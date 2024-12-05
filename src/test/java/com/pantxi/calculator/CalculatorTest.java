@@ -1,19 +1,21 @@
 package com.pantxi.calculator;
 
 import com.pantxi.calculator.Calculator;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
-
     @Test
+
     void add_devrait_calculer_la_some_de_deux_int() {
         //Test de la methode add
+
         assertEquals(5, Calculator.add(2, 3), "l addition de 2 par 3 devrait etre 5");
         assertEquals(-1, Calculator.add(2, -3), "l addition de 2 par -3 devrait etre -1");
         assertEquals(9, Calculator.add(6, 3), "l addition de 6 par 3 devrait etre 9");
     }
-
     @Test
     void divide() {
         //Test de la methode add
