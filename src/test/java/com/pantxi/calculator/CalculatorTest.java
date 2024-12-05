@@ -7,6 +7,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
+    private StringBuilder testString;
+
+    // Méthode exécutée avant chaque test
+    @BeforeEach
+    void setUp() {
+        testString = new StringBuilder("Initial");
+        System.out.println("Setup completed!");
+    }
+
+    // Méthode exécutée après chaque test
+    @AfterEach
+    void tearDown() {
+        testString = null; // Libération des ressources
+        System.out.println("Teardown completed!");
+    }
     @Test
 
     void add_devrait_calculer_la_some_de_deux_int() {
