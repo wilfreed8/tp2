@@ -6,8 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CalculatorTest {
     Calculator calculator ;
     @BeforeEach
@@ -46,6 +52,33 @@ public class CalculatorTest {
     })
     void testadd(int a,int b,int expected) {
         assertEquals(expected, calculator.add(a, b), "addition incorrecte !");
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "7679, 6,7,9",   // Test 1 : chiffres de 7679
+            "-11, 1",        // Test 2 : chiffres de -11
+            "12345, 1,2,3,4,5" // Test 3 : chiffres de 12345
+    })
+
+    public void testEnsembleChiffres(int input, String expectedValues) {
+        Calculator calc = new Calculator();
+        Set<Integer> result = calc.ensembleChiffres(input);
+
+        if (expectedValues.trim().isEmpty()) {
+            assertTrue(result.isEmpty());
+        } else {
+            Set<Integer> expectedSet = Set.of(6,7,9);
+            if (input == -11) {
+                expectedSet = Set.of(1);
+            } else if (input == 12345) {
+                expectedSet = Set.of(1, 2, 3,4,5);
+            } else if (input == 679) {
+                expectedSet = Set.of(6,7,9);
+            }
+            assertEquals(expectedSet, result);
+        }
     }
 
 
